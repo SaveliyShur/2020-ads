@@ -1,10 +1,31 @@
 package part1.SaveliyShur;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.Stack;
 
 public class Task3 {
+    static class Stack<T>{
+        ArrayList<T> stack = new ArrayList<>();
+        int i = 0;
+        public void push(T t){
+            stack.add(t);
+            i++;
+        }
+
+        public T pop(){
+            T t = stack.get(i-1);
+            stack.remove(i-1);
+            i--;
+            return t;
+        }
+
+        public boolean empty(){
+            return stack.isEmpty();
+        }
+    }
+
+
     private Task3() {
         // Should not be instantiated
     }
