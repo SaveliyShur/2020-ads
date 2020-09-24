@@ -4,31 +4,61 @@ import ru.mail.polis.ads.SolveTemplate;
 
 import java.io.*;
 import java.util.LinkedList;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Task2 {
-    private Task2() {
-        // Should not be instantiated
+
+    class Node{
+        char it;
+        Node left;
+        Node right;
+
+        public Node(char it, Node left, Node right) {
+            this.it = it;
+            this.left = left;
+            this.right = right;
+        }
     }
 
-    private static void solve(final FastScanner in, final PrintWriter out) {
+    //Обходит дерево горизонтально
+    private String horizontalCrawl(Node root){
+        LinkedList<Node> actualQueue = new LinkedList<>();
+        StringBuilder answerString = new StringBuilder("");
+        actualQueue.addFirst(root);
+        while (actualQueue.size() != 0){
+            Node actual = actualQueue.pollFirst();
+            if(actual.right != null){
+                actualQueue.addLast(actual.right);
+            }
+            if(actual.left != null){
+                actualQueue.addLast(actual.left);
+            }
+            answerString = answerString.insert(0, actual.it);
+        }
+        return answerString.toString();
+    }
+
+
+
+    private void solve(final FastScanner in, final PrintWriter out) {
         int count = in.nextInt();
         for(int i = 0; i < count; i++){
             String stackString = in.next();
-            char[] symbolStack = stackString.toCharArray();
-            LinkedList<Character> queue = new LinkedList<>();
-            for(Character chark: symbolStack){
-                if(Character.isLowerCase(chark)){
-                    queue.addFirst(chark);
+            char[] charsInStackString = stackString.toCharArray();
+            Stack<Node> stack = new Stack<>();
+            for(char symbol : charsInStackString){
+                if(Character.isLowerCase(symbol)){
+                    stack.push(new Node(symbol, null, null));
                 } else {
-                    queue.addLast(chark);
+                    Node left = stack.pop();
+                    Node right = stack.pop();
+                    Node root = new Node(symbol, left, right);
+                    stack.push(root);
                 }
             }
-            char[] answer = new char[symbolStack.length];
-            for (int j = 0; j < symbolStack.length; j++){
-                answer[j] = queue.pollFirst();
-            }
-            out.println(String.valueOf(answer));
+            String answer = horizontalCrawl(stack.pop());
+            out.println(answer);
         }
     }
 
@@ -59,7 +89,8 @@ public class Task2 {
     public static void main(final String[] arg) {
         final FastScanner in = new FastScanner(System.in);
         try (PrintWriter out = new PrintWriter(System.out)) {
-            solve(in, out);
+            Task2 task2 = new Task2();
+            task2.solve(in, out);
         }
     }
 }
