@@ -38,5 +38,5 @@ tasks {
 
 application {
     // Define the main class for the application
-    mainClassName = "ru.mail.polis.ads.part2.SaveliySchur.BubbleSort_4741"
+    mainClassName = "ru.mail.polis.ads.part2.SaveliySchur.KStatistic_4827"
 }
