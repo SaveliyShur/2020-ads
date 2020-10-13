@@ -1,6 +1,5 @@
 package ru.mail.polis.ads.part3.SaveliySchur;
 
-import ru.mail.polis.ads.SolveTemplate;
 
 import java.io.*;
 import java.util.*;
