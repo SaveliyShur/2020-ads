@@ -38,5 +38,5 @@ tasks {
 
 application {
     // Define the main class for the application
-    mainClassName = "part4.SaveliySchur.Task5_4261"
+    mainClassName = "part4.SaveliySchur.Task4_262"
 }

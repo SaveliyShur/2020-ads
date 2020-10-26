@@ -7,32 +7,33 @@ public class Task4_262 {
         Scanner scanner = new Scanner(System.in);
         int count = scanner.nextInt();
         int[] numbers = new int[count+2];
-        int[] money = new int[count+2];
         numbers[0] = 0;
         numbers[count+1] = 0;
         for(int i = 1; i < count+1; i++){
             numbers[i] = scanner.nextInt();
         }
+
         int k = scanner.nextInt();
 
-        for(int i = 0; i < count+2; i++){
-            if(i < k){
-                int max = 0;
-                for(int j = 0; j < i; j++){
-                    if(numbers[j] > max ){
-                        max = numbers[j] ;
+        for(int i = 1; i < count+2; i++){
+            if(i < k) {
+                int max = numbers[0];
+                for (int j = 1; j < i; j++){
+                    if(numbers[j] > max){
+                        max = numbers[j];
                     }
                 }
-                money[i] = max + numbers[i];
+                numbers[i] = numbers[i] + max;
             } else {
-                int max = 0;
-                for(int j = i-k; j < i; j++){
-                    if(numbers[j]  > max ){
-                        max = numbers[j] ;
+                int max = numbers[i-k];
+                for (int j = i-k+1; j < i; j++){
+                    if(numbers[j] > max){
+                        max = numbers[j];
                     }
                 }
-                money[i] = max + numbers[i];
+                numbers[i] = numbers[i] + max;
             }
         }
+        System.out.println(numbers[count+1]);
     }
 }
