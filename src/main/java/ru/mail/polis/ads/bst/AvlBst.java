@@ -45,9 +45,10 @@ public class AvlBst<Key extends Comparable<Key>, Value>
 
     private Node putValue(Node node, Key key, Value value){
         if(node == null) return new Node(key, value, 1);
-        if(key.compareTo(node.key) < 0) {
+        int compare = key.compareTo(node.key);
+        if(compare < 0) {
             node.left = putValue(node.left, key, value);
-        } else if(key.compareTo(node.key) > 0) {
+        } else if(compare > 0) {
             node.right = putValue(node.right, key, value);
         }
         else {
@@ -111,9 +112,10 @@ public class AvlBst<Key extends Comparable<Key>, Value>
 
     private Node delete(Node node, Key key){
         if(node == null) return null;
-        if(key.compareTo(node.key) < 0) { node.left = delete(node.left, key);}
-        if(key.compareTo(node.key) > 0) { node.right = delete(node.right, key);}
-        if(key.compareTo(node.key) == 0) {
+        int compare = key.compareTo(node.key);
+        if(compare < 0) { node.left = delete(node.left, key);}
+        if(compare > 0) { node.right = delete(node.right, key);}
+        if(compare == 0) {
             node = innerDelete(node);
         }
         return node;
@@ -186,8 +188,9 @@ public class AvlBst<Key extends Comparable<Key>, Value>
 
     private Node floor(Node node, Key key){
         if(node == null) return null;
-        if(key.compareTo(node.key) == 0) return node;
-        if (node.key.compareTo(key) > 0) {
+        int compare = key.compareTo(node.key);
+        if(compare == 0) return node;
+        if (compare < 0) {
             return floor(node.left, key);
         }
 
@@ -205,10 +208,11 @@ public class AvlBst<Key extends Comparable<Key>, Value>
         if (node == null) {
             return null;
         }
-        if (node.key.compareTo(key) == 0) {
+        int compare = node.key.compareTo(key);
+        if (compare == 0) {
             return node;
         }
-        if (node.key.compareTo(key) < 0) {
+        if (compare < 0) {
             return ceil(node.right, key);
         }
 
