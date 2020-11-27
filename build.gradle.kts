@@ -38,5 +38,5 @@ tasks {
 
 application {
     // Define the main class for the application
-    mainClassName = "ru.mail.polis.ads.SolveTemplate"
+    mainClassName = "ru.mail.polis.ads.part9.SaveliySchur.TopologSort_1948"
 }
