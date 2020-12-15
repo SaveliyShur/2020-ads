@@ -39,8 +39,7 @@ public class TopologSort_1948 {
     private static void solve(final FastScanner in, final PrintWriter out) {
         int n = in.nextInt();
         int m = in.nextInt();
-        listSmeghnosty = new ArrayList[n+1];
-        int[] countTop = new int[n+1]; //храним сколько вершин приходят в данную, чтобы узнать с какой стартовать
+        listSmeghnosty = new List[n+1];
         for(int i = 0; i < n + 1; i++){
             listSmeghnosty[i] = new ArrayList<>(n);
         }
@@ -49,11 +48,10 @@ public class TopologSort_1948 {
             int d = in.nextInt();
             int p = in.nextInt();
             listSmeghnosty[d].add(p);
-            countTop[p]++;
         }
         color = new byte[n + 1];
         for(int i = 1; i < n + 1; i++){
-            if(countTop[i] == 0){
+            if(color[i] == WHITE){
                 try {
                     dfs(i);
                 } catch (RuntimeException e){
@@ -104,4 +102,5 @@ public class TopologSort_1948 {
             solve(in, out);
         }
     }
+
 }
