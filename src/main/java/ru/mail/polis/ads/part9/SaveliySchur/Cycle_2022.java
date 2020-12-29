@@ -1,7 +1,5 @@
 package ru.mail.polis.ads.part9.SaveliySchur;
 
-import ru.mail.polis.ads.SolveTemplate;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +20,8 @@ public class Cycle_2022 {
     static class Cycle {
         public boolean[] marked;
         public boolean hasCycle;
-        public int numberCycle ;
+        public int numberCycle = Integer.MAX_VALUE;
+        public Stack<Integer> stack = new Stack<>();
 
         public Cycle(Graph G) {
             marked = new boolean[G.V()];
